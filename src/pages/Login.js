@@ -15,7 +15,7 @@ const Form = styled.form`
     flex-direction: column;
     justify-content: center;
     align-items: center;
-
+    font-size: 25px;
 `;
 
 const H2 = styled.h2`
@@ -33,9 +33,10 @@ width: 720px;
 const Button = styled.button`
 background: #16A8E0;
 border-radius: 80px;
-color: #fff;
+color: #FFF;
 padding: 20px;
 width: 355px;
+font-size: 25px;
 `
 
 const Login = () => {
