@@ -8,7 +8,8 @@ const MainPage = styled.div`
 display: flex;
 align-items: center;
 justify-content: center;
-`;
+`
+
 const Form = styled.form`
     display: flex;
     text-align: center;
@@ -16,7 +17,7 @@ const Form = styled.form`
     justify-content: center;
     align-items: center;
     font-size: 25px;
-`;
+`
 
 const H2 = styled.h2`
 font-size: 50px;
@@ -38,6 +39,7 @@ padding: 20px;
 width: 355px;
 font-size: 25px;
 `
+
 
 const Login = () => {
     return (

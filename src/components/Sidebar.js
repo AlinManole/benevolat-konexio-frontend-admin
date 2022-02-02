@@ -2,6 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 import Logo from '../images/konexio.png';
 
+
 import { Link } from "react-router-dom";
 
 const Nav = styled.nav`
@@ -35,28 +36,34 @@ const H1 = styled.h1`
     font-weight: 400;
     text-decoration: none;
     color: #fff;
+    &:hover {
+        background-color: #16A8E0;
+      }
+    
 `
+
+
 
 const Sidebar = () => {
     return (
         <Nav>
             <Img src={Logo} />
-            <Link to='/sessions'>
+            <Link style={{ textDecoration: 'none' }} to='/sessions'>
                 <H1>Home</H1>
             </Link>
-            <Link to='/'>
+            <Link style={{ textDecoration: 'none' }} to='/'>
                 <H1>Profil</H1>
             </Link>
-            <Link to='/news'>
+            <Link style={{ textDecoration: 'none' }} to='/news'>
                 <H1>News</H1>
             </Link>
-            <Link to='/benevoles'>
+            <Link style={{ textDecoration: 'none' }} to='/benevoles'>
                 <H1>Liste de bénévoles</H1>
             </Link>
-            <Link to='/messagerie'>
+            <Link style={{ textDecoration: 'none' }} to='/messagerie'>
                 <H1>Messagerie</H1>
             </Link>
-            <Link to='/faq'>
+            <Link style={{ textDecoration: 'none' }} to='/faq'>
                 <H1>F.A.Q</H1>
             </Link>
         </Nav>
