@@ -7,9 +7,18 @@ import {
   Content,
   Container,
 } from "../components/styled-components/FormPage";
+import {
+  TitleContainer,
+  Add,
+  CardHeader,
+  CardIcons,
+  ButtonIcon,
+} from "../components/styled-components/AdminTitle";
+import { AiFillEdit } from "react-icons/ai";
+import { RiDeleteBin5Fill } from "react-icons/ri";
 import { ListSessionsContext } from "../context/ListSessions";
 import moment from "moment";
-import "moment/locale/fr"
+import "moment/locale/fr";
 
 const List = styled.div`
   margin-top: 22px;
@@ -65,23 +74,35 @@ const Sessions = () => {
     <Container>
       <Sidebar />
       <Content>
-        <Title>Sessions</Title>
+        <TitleContainer>
+          <Title>Sessions</Title>
+          <Add>Ajouter</Add>
+        </TitleContainer>
         <List>
           {sessions &&
             sessions.length > 0 &&
             sessions.map((session) => {
-              const { program, numberOfPlace, adress, startDate, endDate } = session
-              const start = moment(startDate).locale("fr").format("DD MMMM")
-              const end = moment(endDate).locale("fr").format("DD MMMM")
+              const { program, numberOfPlace, adress, startDate, endDate } =
+                session;
+              const start = moment(startDate).locale("fr").format("DD MMMM");
+              const end = moment(endDate).locale("fr").format("DD MMMM");
               return (
                 <CardSessions session={program.name} key={session._id}>
                   <Link to="/" className="link link-card">
-                    <CardTitle>
-                      {start} - {end}
-                    </CardTitle>
-                    <CardInfo>
-                      Places disponibles: {numberOfPlace}
-                    </CardInfo>
+                    <CardHeader>
+                      <CardTitle>
+                        {start} - {end}
+                      </CardTitle>
+                      <CardIcons>
+                        <ButtonIcon>
+                          <AiFillEdit />
+                        </ButtonIcon>
+                        <ButtonIcon>
+                          <RiDeleteBin5Fill />
+                        </ButtonIcon>
+                      </CardIcons>
+                    </CardHeader>
+                    <CardInfo>Places disponibles: {numberOfPlace}</CardInfo>
                     <CardInfo>Lieu: {adress}</CardInfo>
                     <CardInfo>Sessions: {program.name}</CardInfo>
                   </Link>
