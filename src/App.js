@@ -10,12 +10,14 @@ import Messagerie from "./pages/Messagerie";
 import News from "./pages/News";
 import Sessions from "./pages/Sessions";
 import "./App.css"
+import { ListBenevolesContextProvider } from "./context/ListBenevoles";
 
 
 const App = () => {
 
   return (
     <BrowserRouter>
+      <ListBenevolesContextProvider>
         <Routes>
           <Route exact path="/login" element={<Login />} />
           <Route exact path="/benevoles" element={<Benevoles />} />
@@ -26,6 +28,7 @@ const App = () => {
           <Route path="/messagerie" element={<Messagerie />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
+        </ListBenevolesContextProvider>
     </BrowserRouter>
   )
 }

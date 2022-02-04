@@ -1,12 +1,63 @@
-import React from 'react';
+import React, { useEffect, useContext } from 'react';
 import Sidebar from '../components/Sidebar';
+import { ListBenevolesContext } from "../context/ListBenevoles";
+import { Title, Content, Container } from '../components/styled-components/FormPage';
+import BenevoleCard from '../components/BenevoleCard';
+import styled from 'styled-components';
+
+
+const NameDiv = styled.div`
+display: flex;
+flex-direction: row;
+`
 
 const Benevoles = () => {
+    const { benevoles, getBenevoles } = useContext(ListBenevolesContext);
+
+    useEffect(() => {
+        getBenevoles();
+    });
+
+    // console.log(benevoles.firstName)
     return (
-        <div>
-            <h1>Benevoles Page</h1>
+        <Container>
             <Sidebar />
-        </div>
+            <Content>
+                <Title>Benevoles Page</Title>
+                <div className='Big container'>
+                    <NameDiv>
+                        <h3>Nome</h3>
+                        <h3>Prénom</h3>
+                        <h3>Téléphone</h3>
+                        <h3>Email</h3>
+                        <h3>DigiAll/
+                            DigiStart</h3>
+                        <h3>Nom de l`entreprise</h3>
+                        <h3>Présentiel/
+                            Distanciel</h3>
+                    </NameDiv>
+                    <div className='ScrollDiv'>
+                        {benevoles &&
+                            benevoles.map(benevole => {
+                                const { firstName, lastName, telephone, email, courses, businessName, distanciel } = benevole
+                                return (
+                                    <BenevoleCard
+                                        key={lastName}
+                                        firstName={firstName}
+                                        lastName={lastName}
+                                        telephone={telephone}
+                                        email={email}
+                                        courses={courses}
+                                        bussinesName={businessName}
+                                        distanciel={distanciel}
+                                    />
+                                )
+                            })
+                        }
+                    </div>
+                </div>
+            </Content>
+        </Container>
     );
 };
 
