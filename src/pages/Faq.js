@@ -1,22 +1,11 @@
 import React from 'react';
 import Sidebar from '../components/Sidebar';
 import styled from "styled-components"
+import { Title, Content, Container } from '../components/styled-components/FormPage';
 
-
-const Container = styled.div`
-display: flex;
-flex-direction: row;
-`
-
-const Section = styled.div`
-display : flex;
-flex-direction: column;
-`
 
 const DIV = styled.div`
   background: #E9E9E9;
-  margin: 16px;
-  padding: 10px 30px;
   border-radius: 10px;
   `
 
@@ -27,8 +16,8 @@ const Faq = () => {
 
         <Container>
             <Sidebar />
-            <Section>
-                <h1>Foire aux questions</h1>
+            <Content>
+                <Title>Foire aux questions</Title>
                 <DIV>
                     <h4>Quelles sont les informations demandées pendant l'inscription?</h4>
                     <p>Les informations obligatoires à l’inscription sont votre nom et prénom, votre entreprise, mail. Le numéro de téléphone est fortement conseillé. Il faudrait saisir quelle session, horaire et lieu que vous préférez.</p>
@@ -45,7 +34,7 @@ const Faq = () => {
                     <h4>Comment puis-je annuler mon inscription?</h4>
                     <p>Pour annuler votre inscription, il faudrait contacter les responsables du bénévolat pour effacer l’espace profil.</p>
                 </DIV>
-            </Section>
+            </Content>
         </Container>
     );
 };

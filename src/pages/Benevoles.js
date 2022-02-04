@@ -9,6 +9,15 @@ import styled from 'styled-components';
 const NameDiv = styled.div`
 display: flex;
 flex-direction: row;
+align-items: center;
+width: 100%;
+background: #0375BB; 
+height: 80px;
+`
+
+const ScrollDiv = styled.div`
+ width: 100%;
+ margin: 20px 0;
 `
 
 const Benevoles = () => {
@@ -18,13 +27,12 @@ const Benevoles = () => {
         getBenevoles();
     });
 
-    // console.log(benevoles.firstName)
     return (
         <Container>
             <Sidebar />
             <Content>
                 <Title>Benevoles Page</Title>
-                <div className='Big container'>
+                <div className='big-container'>
                     <NameDiv>
                         <h3>Nome</h3>
                         <h3>Prénom</h3>
@@ -36,7 +44,7 @@ const Benevoles = () => {
                         <h3>Présentiel/
                             Distanciel</h3>
                     </NameDiv>
-                    <div className='ScrollDiv'>
+                    <ScrollDiv>
                         {benevoles &&
                             benevoles.map(benevole => {
                                 const { firstName, lastName, telephone, email, courses, businessName, distanciel } = benevole
@@ -54,7 +62,7 @@ const Benevoles = () => {
                                 )
                             })
                         }
-                    </div>
+                    </ScrollDiv>
                 </div>
             </Content>
         </Container>
