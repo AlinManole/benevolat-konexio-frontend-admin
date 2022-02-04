@@ -9,6 +9,7 @@ import Faq from "./pages/Faq";
 import Messagerie from "./pages/Messagerie";
 import News from "./pages/News";
 import Sessions from "./pages/Sessions";
+import "./App.css"
 
 
 const App = () => {
