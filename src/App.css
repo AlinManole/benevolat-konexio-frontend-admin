@@ -1,7 +1,25 @@
 h1 {
   color: #0375bb;
   font-size: 50px;
+}
+* {
+  margin: 0;
+  padding: 0;
+  text-decoration: none;
+  list-style: none;
+} 
+
+.link {
+  text-decoration: none;
+}
+
+.nav:hover {
+  background: rgba(0, 0, 0, 0.3);
+  width: fit-content;
+  padding: 0 30px;
   text-align: center;
+  border-radius: 9999px;
+  margin: 0 auto;
 }
 
 h4 {
@@ -25,4 +43,43 @@ p {
 
 .big-container {
   width: 100%;
+}
+
+.link-card {
+  color: black;
+}
+
+.closeIcon {
+  position: relative;
+  top: 0;
+  left: 0;
+  padding: 15px;
+  cursor: pointer;
+  border-radius: 9999px;
+  margin-right: 20px;
+}
+
+.closeIcon:hover {
+  background: rgba(0, 0, 0, 0.3);
+}
+
+.modal {
+  border: 1px solid lightgray;
+  border-radius: 28px;
+  background-color: white;
+  padding: 10px;
+}
+
+.form-modal{
+  width: 650px;
+  font-size: 20px;
+}
+
+.select-modal {
+  padding: 10px;
+  border-radius: 9999px;
+  border: none;
+  background-color: #f4f4f4;
+  font-size: 18px;
+  width: 51.5%;
 }

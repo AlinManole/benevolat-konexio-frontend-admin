@@ -15,6 +15,10 @@ const Nav = styled.nav`
     position: relative;
     display: flex;
     flex-direction: column;
+
+    @media (min-height: 800px) {
+        height: 100%;
+    }
 `
 
 const Img = styled.img`
@@ -44,20 +48,23 @@ const Sidebar = () => {
     return (
         <Nav>
             <Img src={Logo} />
-            <Link to='/home' className="link nav">
-                <H1>Home</H1>
+            <Link className="link nav" to='/sessions'>
+                <H1>Sessions</H1>
             </Link>
-            <Link to='/' className="link nav">
-                <H1>Liste de bénévoles</H1>
+            <Link className="link nav" to='/'>
+                <H1>Profil</H1>
             </Link>
-            <Link to='/' className="link nav">
+            <Link className="link nav" to='/news'>
                 <H1>News</H1>
             </Link>
-            <Link to='/' className="link nav">
-                <H1>F.A.Q</H1>
+            <Link className="link nav" to='/benevoles'>
+                <H1>Liste de bénévoles</H1>
             </Link>
-            <Link to='/' className="link nav">
+            <Link className="link nav" to='/messagerie'>
                 <H1>Messagerie</H1>
+            </Link>
+            <Link className="link nav" to='/faq'>
+                <H1>F.A.Q</H1>
             </Link>
         </Nav>
     );
