@@ -9,7 +9,6 @@ const ListBenevolesContextProvider = ({children}) => {
     const response = await fetch(`http://localhost:5000/users/volunteers`, {
       credentials: 'include'
     })
-
     const data = await response.json()
 
     setBenevoles(data)

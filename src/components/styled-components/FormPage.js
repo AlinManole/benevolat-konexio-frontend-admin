@@ -5,6 +5,7 @@ const Title = styled.h1`
   color: #0375BB;
 `
 
+
 const Content = styled.div`
   width: 100%;
   margin-left: 60px;

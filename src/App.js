@@ -1,5 +1,7 @@
 import React from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { ListBenevolesContextProvider } from "./context/ListBenevoles";
+import "./App.css"
 
 import Login from "./pages/Login";
 import NotFound from "./pages/NotFound.js";
@@ -8,9 +10,9 @@ import Calendrier from "./pages/Calendrier";
 import Faq from "./pages/Faq";
 import Messagerie from "./pages/Messagerie";
 import News from "./pages/News";
+import Mail from "./pages/Mail";
 import Sessions from "./pages/Sessions";
-import "./App.css"
-import { ListBenevolesContextProvider } from "./context/ListBenevoles";
+
 
 
 const App = () => {
@@ -26,6 +28,7 @@ const App = () => {
           <Route exact path="/news" element={<News />} />
           <Route exact path="/sessions" element={<Sessions />} />
           <Route path="/messagerie" element={<Messagerie />} />
+          <Route path="/mail" element={<Mail />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
         </ListBenevolesContextProvider>
