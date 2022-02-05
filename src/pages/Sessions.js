@@ -1,4 +1,4 @@
-import React, { useContext, useEffect } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
 import Sidebar from "../components/Sidebar";
@@ -19,6 +19,8 @@ import { RiDeleteBin5Fill } from "react-icons/ri";
 import { ListSessionsContext } from "../context/ListSessions";
 import moment from "moment";
 import "moment/locale/fr";
+import AddModalSession from "../modals/AddModalSession";
+import ModifyModalSession from "../modals/ModifyModalSession";
 
 const List = styled.div`
   margin-top: 22px;
@@ -64,11 +66,20 @@ const CardInfo = styled.p`
 `;
 
 const Sessions = () => {
-  const { sessions, getSessions } = useContext(ListSessionsContext);
+  const {
+    sessions,
+    getSessions,
+    addNewSession,
+    modifySession,
+    getSession,
+    deleteSession,
+  } = useContext(ListSessionsContext);
+  const [addModalVisible, setAddModalVisible] = useState(false);
+  const [modifyModalVisible, setModifyModalVisible] = useState(false);
 
   useEffect(() => {
     getSessions();
-  });
+  }, []);
 
   return (
     <Container>
@@ -76,7 +87,7 @@ const Sessions = () => {
       <Content>
         <TitleContainer>
           <Title>Sessions</Title>
-          <Add>Ajouter</Add>
+          <Add onClick={() => setAddModalVisible(true)}>Ajouter</Add>
         </TitleContainer>
         <List>
           {sessions &&
@@ -87,30 +98,56 @@ const Sessions = () => {
               const start = moment(startDate).locale("fr").format("DD MMMM");
               const end = moment(endDate).locale("fr").format("DD MMMM");
               return (
-                <CardSessions session={program.name} key={session._id}>
-                  <Link to="/" className="link link-card">
+                <>
+                  <CardSessions session={program.name} key={session._id}>
                     <CardHeader>
-                      <CardTitle>
-                        {start} - {end}
-                      </CardTitle>
+                      <Link to="/" className="link link-card">
+                        <CardTitle>
+                          {start} - {end}
+                        </CardTitle>
+                      </Link>
                       <CardIcons>
                         <ButtonIcon>
-                          <AiFillEdit />
+                          <AiFillEdit
+                            onClick={() => {
+                              setModifyModalVisible(true);
+                              getSession(session._id);
+                            }}
+                          />
                         </ButtonIcon>
                         <ButtonIcon>
-                          <RiDeleteBin5Fill />
+                          <RiDeleteBin5Fill
+                            onClick={() => {
+                              deleteSession(session._id);
+                              getSessions();
+                            }}
+                          />
                         </ButtonIcon>
                       </CardIcons>
                     </CardHeader>
-                    <CardInfo>Places disponibles: {numberOfPlace}</CardInfo>
-                    <CardInfo>Lieu: {adress}</CardInfo>
-                    <CardInfo>Sessions: {program.name}</CardInfo>
-                  </Link>
-                </CardSessions>
+                    <Link to="/" className="link link-card">
+                      <CardInfo>Places disponibles: {numberOfPlace}</CardInfo>
+                      <CardInfo>Lieu: {adress}</CardInfo>
+                      <CardInfo>Sessions: {program.name}</CardInfo>
+                    </Link>
+                  </CardSessions>
+                </>
               );
             })}
         </List>
       </Content>
+
+      <AddModalSession
+        isOpen={addModalVisible}
+        onClose={() => setAddModalVisible(false)}
+        addNewSession={addNewSession}
+        getSessions={getSessions}
+      />
+      <ModifyModalSession
+        isOpen={modifyModalVisible}
+        onClose={() => setModifyModalVisible(false)}
+        modifySession={modifySession}
+      />
     </Container>
   );
 };

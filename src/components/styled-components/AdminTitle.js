@@ -15,10 +15,14 @@ const Add = styled.button`
   height: 40px;
   margin-top: 20px;
   margin-right: 20px;
-  background-color: #FF9F1C;
+  background-color: #F6BC4D;
   color: white;
   font-weight: 600;
   font-size: 20px;
+
+  &:hover{
+    background-color: #FF9F1C;
+  }
 `
 
 const CardHeader = styled.div`
