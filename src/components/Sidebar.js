@@ -60,9 +60,6 @@ const Sidebar = () => {
             <Link className="link nav" to='/messagerie'>
                 <H1>Messagerie</H1>
             </Link>
-            <Link className="link nav" to='/faq'>
-                <H1>F.A.Q</H1>
-            </Link>
             <Link className="link nav" to='/login/admin'>
                 <H1>Logout</H1>
             </Link>
