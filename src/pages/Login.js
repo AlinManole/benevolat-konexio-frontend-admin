@@ -6,9 +6,7 @@ import * as Yup from "yup"
 
 
 const MainPage = styled.div`
-display: flex;
-align-items: center;
-justify-content: center;
+
 `
 
 const Form = styled.form`
@@ -30,6 +28,7 @@ margin: 10px;
 background: #FFF;
 border-radius: 80px;
 width: 720px;
+text-align: center;
 `
 
 const Button = styled.button`
@@ -41,7 +40,16 @@ padding: 10px;
 width: 355px;
 font-size: 25px;
 `
+const Img = styled.img`
+    padding-inline: 100px; 
+    width: 190px;
+    align-self: center;
+    align-content: center;
+    justify-content: center;    
+    background-color: #fff;
+    margin-bottom: 20px;
 
+`
 
 const Login = () => {
 
@@ -62,7 +70,7 @@ const Login = () => {
 
     return (
         <MainPage>
-            <img src={Logo} alt="Konexio Logo"></img>
+            <Img src={Logo} alt="Konexio Logo"></Img>
             <Form onSubmit={formik.handleSubmit}>
                 <H2>Connectez-vous à l’espace admin</H2>
                 <Input
