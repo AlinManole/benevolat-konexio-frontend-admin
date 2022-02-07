@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 import { FaReply } from 'react-icons/fa'
 import { MdOutlineArrowLeft } from 'react-icons/md'
@@ -61,7 +62,11 @@ const Mail = () => {
     return (
         <Container>
             <BlueHeader>
-                <ButtonBack><MdOutlineArrowLeft />Retour</ButtonBack>
+                <ButtonBack>
+                    <Link to='/messagerie'>
+                        <MdOutlineArrowLeft />Retour
+                    </Link>
+                </ButtonBack>
                 <Subject>Email Subject</Subject>
             </BlueHeader>
             <div>
