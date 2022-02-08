@@ -21,6 +21,7 @@ import moment from "moment";
 import "moment/locale/fr";
 import AddModalSession from "../modals/AddModalSession";
 import ModifyModalSession from "../modals/ModifyModalSession";
+import { AdminContext } from "../context/Admin";
 
 const List = styled.div`
   margin-top: 22px;
@@ -76,10 +77,25 @@ const Sessions = () => {
   } = useContext(ListSessionsContext);
   const [addModalVisible, setAddModalVisible] = useState(false);
   const [modifyModalVisible, setModifyModalVisible] = useState(false);
+  const {user} = useContext(AdminContext)
 
   useEffect(() => {
     getSessions();
   }, []);
+
+  if (!user) {
+    return (
+      <Container>
+      <Sidebar />
+      <Content>
+        <TitleContainer>
+          <Title>Sessions</Title>
+        </TitleContainer>
+        <p>Vous n'etes pas autorisé.e à acceder à la page. </p>
+      </Content>
+    </Container>
+    )
+  }
 
   return (
     <Container>

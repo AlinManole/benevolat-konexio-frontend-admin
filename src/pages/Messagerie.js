@@ -1,10 +1,12 @@
 import React from 'react';
 import Sidebar from '../components/Sidebar';
 import styled from 'styled-components';
-import { GoMailRead } from 'react-icons/go';
-import { GoMail } from 'react-icons/go';
-import { BsPencilSquare } from 'react-icons/bs';
+import EmailList from '../components/styled-components/EmailList';
+import EmailRow from '../components/styled-components/EmailRow';
 
+import { HiPencilAlt } from 'react-icons/hi';
+import { RiMailSendFill } from 'react-icons/ri';
+import { FaEnvelopeOpenText } from 'react-icons/fa';
 
 import { useState } from 'react'
 import CreateWriteModal from '../modals/CreateWriteModal';
@@ -82,6 +84,7 @@ display:flex;
      padding-left: 290px;
  }
 
+
 `
 const Messagerie = () => {
     const [createWriteModalVisible, setCreateWriteModalVisible] = useState(false)
@@ -91,25 +94,24 @@ const Messagerie = () => {
         <div className="messagerie">
            <h1>Messagerie</h1>
            <div className ="buttons">
-           <button className="recu"><GoMailRead  /></button>
-           <button className="envoyés"><GoMail /></button>
-           <button onClick={() => setCreateWriteModalVisible(true)} className="ecrire"><BsPencilSquare /></button>
+           <button className="recu"><FaEnvelopeOpenText  /></button>
+           <button className="envoyés"><RiMailSendFill /></button>
+           <button onClick={() => setCreateWriteModalVisible(true)} className="ecrire"><HiPencilAlt /></button>
            </div>
            <div className="titre">
            <p className="Tirecu">Reçu</p>
            <p className="Tienvoyés">Envoyés</p>
            <p className="Tiecrire">Ecrire</p>
            </div>
+           <EmailList />
         </div>
-
         <CreateWriteModal
             isOpen={createWriteModalVisible}
             onClose={() => setCreateWriteModalVisible(false)}
             />
         </Container>
-    
+
     );
 };
- 
-export default Messagerie;
 
+export default Messagerie;

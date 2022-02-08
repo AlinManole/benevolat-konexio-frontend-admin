@@ -2,9 +2,17 @@ import React, { useContext, useEffect } from "react";
 import Sidebar from "../components/Sidebar";
 import styled from "styled-components";
 import { ListNewsContext } from "../context/ListNews";
-import { Content } from '../components/styled-components/FormPage'
 import moment from "moment";
 import "moment/locale/fr";
+import { AdminContext } from "../context/Admin";
+import {
+  Title,
+  Content,
+  Container,
+} from "../components/styled-components/FormPage";
+import {
+  TitleContainer,
+} from "../components/styled-components/AdminTitle";
 
 const Newnews = styled.div`
   display: flex;
@@ -59,10 +67,24 @@ const Newnews = styled.div`
 
 const News = () => {
   const { news, getNews } = useContext(ListNewsContext);
-
+  const { user } = useContext(AdminContext)
   useEffect(() => {
     getNews();
   }, []);
+
+  if (!user) {
+    return (
+      <Container>
+      <Sidebar />
+      <Content>
+        <TitleContainer>
+          <Title>News</Title>
+        </TitleContainer>
+        <p>Vous n'etes pas autorisé.e à acceder à la page. </p>
+      </Content>
+    </Container>
+    )
+  }
 
   if (!news) {return <p>chargement</p>};
 console.log(news)

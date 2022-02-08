@@ -13,23 +13,26 @@ import Calendrier from "./pages/Calendrier";
 import Messagerie from "./pages/Messagerie";
 import News from "./pages/News";
 import Mail from "./pages/Mail";
+import { AdminContextProvider } from "./context/Admin";
 
 const App = () => {
   return (
     <BrowserRouter>
       <ListBenevolesContextProvider>
         <ListSessionsContextProvider>
-        <ListNewsContextProvider>
-          <Routes>
-            <Route exact path="/login/admin" element={<Login />} />
-            <Route exact path="/benevoles" element={<Benevoles />} />
-            <Route exact path="/calendrier" element={<Calendrier />} />
-            <Route exact path="/news" element={<News />} />
-            <Route exact path="/sessions" element={<Sessions />} />
-            <Route path="/messagerie" element={<Messagerie />} />
-            <Route path="/:id_mail" element={<Mail />} />
-            <Route path="*" element={<NotFound />} />
-          </Routes>
+          <ListNewsContextProvider>
+            <AdminContextProvider>
+              <Routes>
+                <Route exact path="/login/admin" element={<Login />} />
+                <Route exact path="/benevoles" element={<Benevoles />} />
+                <Route exact path="/calendrier" element={<Calendrier />} />
+                <Route exact path="/news" element={<News />} />
+                <Route exact path="/sessions" element={<Sessions />} />
+                <Route path="/messagerie" element={<Messagerie />} />
+                <Route path="/:id_mail" element={<Mail />} />
+                <Route path="*" element={<NotFound />} />
+              </Routes>
+            </AdminContextProvider>
           </ListNewsContextProvider>
         </ListSessionsContextProvider>
       </ListBenevolesContextProvider>

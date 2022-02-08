@@ -1,8 +1,10 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { useFormik } from 'formik';
 import styled from "styled-components"
 import Logo from "../images/konexio.png"
 import * as Yup from "yup"
+import { AdminContext } from '../context/Admin';
+import { useNavigate } from 'react-router-dom';
 
 
 const MainPage = styled.div`
@@ -52,13 +54,21 @@ const Img = styled.img`
 `
 
 const Login = () => {
+    const { login } = useContext(AdminContext)
 
+    const navigate = useNavigate()
 
     const formik = useFormik({
         initialValues: {
             email: "",
             password : ""
         },
+        onSubmit: values => {
+            login(values)
+            navigate('/sessions')
+        },
+        validateOnChange: false
+        ,
         validationSchema: Yup.object({
             email: Yup.string()
               .required("Username is required"),

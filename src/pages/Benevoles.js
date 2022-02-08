@@ -4,6 +4,10 @@ import { ListBenevolesContext } from "../context/ListBenevoles";
 import { Title, Content, Container } from '../components/styled-components/FormPage';
 import BenevoleCard from '../components/BenevoleCard';
 import styled from 'styled-components';
+import {
+    TitleContainer,
+  } from "../components/styled-components/AdminTitle";
+import { AdminContext } from '../context/Admin';
 
 
 const NameDiv = styled.div`
@@ -22,10 +26,26 @@ const ScrollDiv = styled.div`
 
 const Benevoles = () => {
     const { benevoles, getBenevoles } = useContext(ListBenevolesContext);
+    const { user } = useContext(AdminContext)
 
     useEffect(() => {
         getBenevoles();
     });
+
+    if (!user) {
+        return (
+          <Container>
+          <Sidebar />
+          <Content>
+            <TitleContainer>
+              <Title>Sessions</Title>
+            </TitleContainer>
+            <p>Vous n'etes pas autorisé.e à acceder à la page. </p>
+          </Content>
+        </Container>
+        )
+      }
+
 
     return (
         <Container>

@@ -7,56 +7,30 @@ const AdminContextProvider = ({ children }) => {
 
   const navigate = useNavigate()
 
-  const [ admin, setAdmin ] = useState({})
+ 
   const [ user, setUser ] = useState(null)
 
-
-  const signup = async values => {
-    const signupResponse = await fetch('http://localhost:5000/auth/signup', {
+  const login = async (values) => {
+    const response = await fetch (`http://localhost:5000/auth/login/admin`, {
+      credentials: 'include',
       method: 'post',
       headers: {
-        'Content-type': 'application/json',
+        'Content-Type': 'application/json'
       },
-      credentials: 'include',
-      body: JSON.stringify({
-        firstName: values.firstName,
-        lastName: values.lastName,
-        email: values.email,
-        businessName: values.businessName,
-        telephone: values.telephone,
-        password: values.password,
-      })
+      body : JSON.stringify(values)
     })
 
-    const admin = await signupResponse.json()
-
-    if (admin.error) {
-      alert(admin.error)
+    if(response.error) {
+      alert(response.error)
+      return
+    }
+    if(response.status >= 400) {
+      alert(response.statusText)
       return
     }
 
-    const loginResponse = await fetch('http://localhost:5000/auth/login/admin', {
-      method: 'post',
-      headers: {
-        'Content-type': 'application/json'
-      },
-      credentials: 'include',
-      body: JSON.stringify({
-        email: admin.email,
-        password: admin.password
-      })
-    })
-
-    const loginData = await loginResponse.json()
-
-    if (loginResponse.status >= 400) {
-      alert(loginResponse.statusText)
-    } else {
-     
-      console.log(loginResponse)
-    }
-    
-    setUser(loginData)
+    const data = await response.json()
+    setUser(data)
   }
 
   const logout = async () => {
@@ -81,13 +55,11 @@ const AdminContextProvider = ({ children }) => {
     navigate('/login')
   }
 
-  const value = {
-    admin,  
-    setAdmin,
+  const value = {   
     user,
     setUser,
-    signup,
-    logout
+    logout,
+    login
   }
 
   return (
