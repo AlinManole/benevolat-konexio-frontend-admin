@@ -14,6 +14,7 @@ const List = styled.div`
     margin-left: 50px;
     margin-top: 30px;
     border: solid 1px grey;
+    height: 450px;
 }
 
 .emailListSettings {

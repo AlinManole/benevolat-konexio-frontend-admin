@@ -15,6 +15,7 @@ const Nav = styled.nav`
     position: relative;
     display: flex;
     flex-direction: column;
+    position: fixed;
 
     @media (min-height: 800px) {
         height: 100%;

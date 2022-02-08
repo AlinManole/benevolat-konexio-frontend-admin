@@ -52,7 +52,7 @@ const AdminContextProvider = ({ children }) => {
     }
 
     setUser(null)
-    navigate('/login')
+    navigate('/login/admin')
   }
 
   const value = {   

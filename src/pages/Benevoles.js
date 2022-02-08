@@ -51,7 +51,7 @@ const Benevoles = () => {
         <Container>
             <Sidebar />
             <Content>
-                <Title>Benevoles Page</Title>
+                <Title>Liste de Bénévoles</Title>
                 <div className='big-container'>
                     <NameDiv>
                         <h3>Nome</h3>

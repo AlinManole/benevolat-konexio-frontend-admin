@@ -7,7 +7,7 @@ const Title = styled.h1`
 
 const Content = styled.div`
   width: 100%;
-  margin-left: 60px;
+  margin-left: 450px;
   margin-right: 30px;
   margin-top: 20px;
 `

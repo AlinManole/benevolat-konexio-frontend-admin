@@ -77,7 +77,7 @@ const Sessions = () => {
   } = useContext(ListSessionsContext);
   const [addModalVisible, setAddModalVisible] = useState(false);
   const [modifyModalVisible, setModifyModalVisible] = useState(false);
-  const {user} = useContext(AdminContext)
+  const { user } = useContext(AdminContext)
 
   useEffect(() => {
     getSessions();
@@ -141,7 +141,7 @@ const Sessions = () => {
                         </ButtonIcon>
                       </CardIcons>
                     </CardHeader>
-                    <Link to="/" className="link link-card">
+                    <Link to={`/sessions/${session._id}`} className="link link-card">
                       <CardInfo>Places disponibles: {numberOfPlace}</CardInfo>
                       <CardInfo>Lieu: {adress}</CardInfo>
                       <CardInfo>Sessions: {program.name}</CardInfo>
