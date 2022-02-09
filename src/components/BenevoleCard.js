@@ -22,7 +22,7 @@ text-align: left;
     background: #FF9F1C;
   }
 
-&: nth-child(odd) {
+&:nth-child(odd) {
     background: white;
     &:hover {
         background: lightgray;

@@ -26,7 +26,7 @@ const ScrollDiv = styled.div`
 
 const NameContainer = styled.div`
 width: 100%;
-heigh: 60px;
+height: 60px;
 
 .pageText {
 
