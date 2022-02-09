@@ -16,10 +16,6 @@ const Nav = styled.nav`
     display: flex;
     flex-direction: column;
     position: fixed;
-
-    @media (min-height: 800px) {
-        height: 100%;
-    }
 `
 
 const Img = styled.img`
