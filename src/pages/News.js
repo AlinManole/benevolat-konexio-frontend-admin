@@ -1,4 +1,4 @@
-import React, { useContext, useEffect } from "react";
+import React, { useContext, useEffect , useState } from "react";
 import Sidebar from "../components/Sidebar";
 import styled from "styled-components";
 import { ListNewsContext } from "../context/ListNews";
@@ -10,8 +10,13 @@ import {
   Content,
   Container,
 } from "../components/styled-components/FormPage";
+
 import {
   TitleContainer,
+  Add,
+  CardHeader,
+  CardIcons,
+  ButtonIcon,
 } from "../components/styled-components/AdminTitle";
 
 const Newnews = styled.div`
@@ -66,25 +71,34 @@ const Newnews = styled.div`
 // `;
 
 const News = () => {
-  const { news, getNews } = useContext(ListNewsContext);
+  const {
+    news,
+    getNews,
+    addNewNews,
+    deleteNews,
+  } = useContext(ListNewsContext);
+  const [addModalVisible, setAddModalVisible] = useState(false);
+  const [modifyModalVisible, setModifyModalVisible] = useState(false);
   const { user } = useContext(AdminContext)
+
+
   useEffect(() => {
     getNews();
   }, []);
 
-  if (!user) {
-    return (
-      <Container>
-      <Sidebar />
-      <Content>
-        <TitleContainer>
-          <Title>News</Title>
-        </TitleContainer>
-        <p>Vous n'etes pas autorisé.e à acceder à la page. </p>
-      </Content>
-    </Container>
-    )
-  }
+  // if (!user) {
+  //   return (
+  //     <Container>
+  //     <Sidebar />
+  //     <Content>
+  //       <TitleContainer>
+  //         <Title>News</Title>
+  //       </TitleContainer>
+  //       <p>Vous n'etes pas autorisé.e à acceder à la page. </p>
+  //     </Content>
+  //   </Container>
+  //   )
+  // }
 
   if (!news) {return <p>chargement</p>};
 console.log(news)
@@ -96,15 +110,16 @@ console.log(news)
       <Content>
         <div className="titlepage">
           <h2>News</h2>
+          <Add onClick={() => setAddModalVisible(true)}>Ajouter</Add>
         </div>
 
         {news.map((news) => {
-          const { title, content, createdAt, updatedAt } = news;
+          const { title, content, createdAt, updatedAt, id } = news;
           const created = moment(createdAt).locale("fr").format("llll");
           const updated = moment(updatedAt).locale("fr").format("llll");
 
           return (
-            <div className="news">
+            <div key={id} className="news">
               {/* <h2>News</h2> */}
               <p>
                 {title}!
