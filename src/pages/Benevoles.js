@@ -38,7 +38,7 @@ const Benevoles = () => {
           <Sidebar />
           <Content>
             <TitleContainer>
-              <Title>Sessions</Title>
+              <Title>Benevoles</Title>
             </TitleContainer>
             <p>Vous n'etes pas autorisé.e à acceder à la page. </p>
           </Content>

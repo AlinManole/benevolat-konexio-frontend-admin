@@ -9,9 +9,17 @@ import { HiPencilAlt } from "react-icons/hi";
 import { RiMailSendFill } from "react-icons/ri";
 import { FaEnvelopeOpenText } from "react-icons/fa";
 
-import { useState } from "react";
+import { useState , useContext } from "react";
 import CreateWriteModal from "../modals/CreateWriteModal";
 // import CreateWriteForm from '../modals/CreateWriteForm';
+
+import { AdminContext } from "../context/Admin";
+import {
+  Title
+} from "../components/styled-components/FormPage";
+import {
+  TitleContainer,
+} from "../components/styled-components/AdminTitle";
 
 const Container = styled.div`
   display: flex;
@@ -84,6 +92,21 @@ const Container = styled.div`
 `;
 const Messagerie = () => {
   const [createWriteModalVisible, setCreateWriteModalVisible] = useState(false);
+  const { user } = useContext(AdminContext)
+
+  if (!user) {
+    return (
+      <Container>
+      <Sidebar />
+      <Content>
+        <TitleContainer>
+          <Title>Messagerie</Title>
+        </TitleContainer>
+        <p>Vous n'etes pas autorisé.e à acceder à la page. </p>
+      </Content>
+    </Container>
+    )
+  }
   return (
     <Container>
       <Sidebar />
