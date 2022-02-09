@@ -83,19 +83,19 @@ const Sessions = () => {
     getSessions();
   }, []);
 
-  if (!user) {
-    return (
-      <Container>
-      <Sidebar />
-      <Content>
-        <TitleContainer>
-          <Title>Sessions</Title>
-        </TitleContainer>
-        <p>Vous n'etes pas autorisé.e à acceder à la page. </p>
-      </Content>
-    </Container>
-    )
-  }
+  // if (!user) {
+  //   return (
+  //     <Container>
+  //     <Sidebar />
+  //     <Content>
+  //       <TitleContainer>
+  //         <Title>Sessions</Title>
+  //       </TitleContainer>
+  //       <p>Vous n'etes pas autorisé.e à acceder à la page. </p>
+  //     </Content>
+  //   </Container>
+  //   )
+  // }
 
   return (
     <Container>

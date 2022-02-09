@@ -84,7 +84,8 @@ const ListSessionsContextProvider = ({children}) => {
     addNewSession,
     modifySession,
     getSession,
-    deleteSession
+    deleteSession,
+    session
   }
 
   return (

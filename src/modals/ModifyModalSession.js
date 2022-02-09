@@ -58,6 +58,7 @@ Modal.setAppElement("#root");
 
 const ModifyModalSession = ({ isOpen, onClose, modifySession }) => {
   const { session, getSessions } = useContext(ListSessionsContext);
+  console.log(useContext(ListSessionsContext))
 
   if (!session) {
     return (
@@ -72,6 +73,8 @@ const ModifyModalSession = ({ isOpen, onClose, modifySession }) => {
       </Modal>
     );
   }
+
+  console.log(session)
 
   return (
     <Modal isOpen={isOpen} style={customStyles} className="modal" key={session._id}>
