@@ -42,19 +42,19 @@ const Benevoles = () => {
         getBenevoles();
     },[]);
 
-    // if (!user) {
-    //     return (
-    //       <Container>
-    //       <Sidebar />
-    //       <Content>
-    //         <TitleContainer>
-    //           <Title>Benevoles</Title>
-    //         </TitleContainer>
-    //         <p>Vous n'etes pas autorisé.e à acceder à la page. </p>
-    //       </Content>
-    //     </Container>
-    //     )
-    //   }
+    if (!user) {
+        return (
+          <Container>
+          <Sidebar />
+          <Content>
+            <TitleContainer>
+              <Title>Benevoles</Title>
+            </TitleContainer>
+            <p>Vous n'etes pas autorisé.e à acceder à la page. </p>
+          </Content>
+        </Container>
+        )
+      }
 
 
     return (
