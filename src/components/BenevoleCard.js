@@ -8,9 +8,7 @@ display: flex;
 flex-direction: row;
 background: #0375BB;
 margin: 10px;
-padding: 30px;
 border-radius: 10px;
-
 `
     
 
