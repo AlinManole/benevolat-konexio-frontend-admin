@@ -1,7 +1,8 @@
 import Modal from "react-modal";
 import { GrClose } from "react-icons/gr";
 import styled from "styled-components";
-import { Field, Formik, Form } from "formik";
+import { useFormik} from "formik";
+import * as Yup from "yup"
 
 const customStyles = {
   content: {
@@ -24,36 +25,36 @@ const Header = styled.div`
 const Body = styled.div`
   color: rgba(153, 153, 153, 1);
 `;
-const InputLine = styled.div`
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin: 15px 20px;
-`;
-const Input = styled.input`
-  padding: 10px;
-  border-radius: 9999px;
-  border: none;
-  background-color: #f4f4f4;
-  font-size: 18px;
-  width: 48%;
-`;
-const Button = styled.button`
-  padding: 10px;
-  border-radius: 9999px;
-  border: none;
-  background-color: #0375bb;
-  color: white;
-  font-size: 18px;
-  font-weight: 600;
-  width: 30%;
-  margin: 20px 10px 10px 10px;
-  cursor: pointer;
-`;
+
+const Form = styled.div`
+display:flex;
+`
 
 Modal.setAppElement("#root");
 
-const AddModalNews = ({ isOpen, onClose, addNewSession, getSessions }) => {
+const AddModalNews = ({ isOpen, onClose, addNewNews, getNews }) => {
+
+
+  const formik = useFormik({
+    initialValues:{
+      title:"",
+      content:""
+    },
+    onSubmit: values => {
+      addNewNews(values)
+      onClose()
+      getNews()
+      console.log(values)
+    },
+    validateOnChange: false, 
+    validationSchema: Yup.object({
+      title:Yup.string(),
+      content: Yup.string().required("Contenu est obligatoire")
+    })
+  })
+
+  console.log(formik)
+
   return (
     <Modal isOpen={isOpen} style={customStyles} className="modal">
       <Header>
@@ -61,88 +62,12 @@ const AddModalNews = ({ isOpen, onClose, addNewSession, getSessions }) => {
         <h1>Ajouter une session</h1>
       </Header>
       <Body>
-        <Formik
-          initialValues={{
-            startDate: "",
-            endDate: "",
-            numberOfPlace: "",
-            adress: "",
-            program: "",
-          }}
-          onSubmit={(values) => {
-            addNewSession(values);
-            onClose();
-            getSessions()
-          }}
-        >
-          {({ handleChange, values }) => (
-            <Form className="form-modal">
-              <InputLine>
-                <label>Date de début : </label>
-                <Input
-                  onChange={handleChange}
-                  type="date"
-                  name="startDate"
-                  value={values.startDate}
-                />
-              </InputLine>
-              <InputLine>
-                <label>Date de fin : </label>
-                <Input
-                  onChange={handleChange}
-                  type="date"
-                  name="endDate"
-                  value={values.endDate}
-                />
-              </InputLine>
-              <InputLine>
-                <label>Nombre de places disponibles : </label>
-                <Input
-                  name="numberOfPlace"
-                  type="number"
-                  onChange={handleChange}
-                  min={1}
-                  max={10}
-                  placeholder="Nombres de places"
-                  value={values.numberOfPlace}
-                />
-              </InputLine>
-              <InputLine>
-                <label>Lieu : </label>
-                <Input
-                  name="adress"
-                  type="string"
-                  onChange={handleChange}
-                  placeholder="Lieu"
-                  value={values.adress}
-                />
-              </InputLine>
-              <InputLine>
-                <label>Session : </label>
-                <Field
-                  name="program"
-                  component="select"
-                  placeholder="Choisir le programme de la session"
-                  values={values.program}
-                  onChange={handleChange}
-                  className="select-modal"
-                >
-                  <option value="Choisir le programme de la session">
-                    Choisir le programme
-                  </option>
-                  <option value="61fceb8d92375bd827ac0dfe">DigitAll</option>
-                  <option value="61fceb5292375bd827ac09c9">
-                    DigiStart, 20h
-                  </option>
-                  <option value="61fceb8192375bd827ac0d02">
-                    DigiStart, 36h
-                  </option>
-                </Field>
-              </InputLine>
-              <Button type="submit">Confirmation</Button>
-            </Form>
-          )}
-        </Formik>
+          <Form onSubmit={formik.handleSubmit}>
+            <input type="text" name="title" onChange={formik.handleChange} value={formik.values.title} placeholder="Titre"/>
+            <input type="text" name="content" onChange={formik.handleChange} value={formik.values.content} placeholder="Ecrire votre contenu.."/>
+
+            <button type="submit">Publier</button>
+          </Form>
       </Body>
     </Modal>
   );

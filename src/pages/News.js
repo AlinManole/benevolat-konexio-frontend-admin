@@ -19,6 +19,8 @@ import {
   ButtonIcon,
 } from "../components/styled-components/AdminTitle";
 
+import  AddModalNews from '../modals/AddModalNews'
+
 const Newnews = styled.div`
   display: flex;
 
@@ -34,7 +36,7 @@ const Newnews = styled.div`
     margin-top: 20px;
   }
 
-  .news p {
+  .p {
     background-color: #d7d8d8;
     border-radius: 10px;
     font-size: 15px;
@@ -78,7 +80,7 @@ const News = () => {
     deleteNews,
   } = useContext(ListNewsContext);
   const [addModalVisible, setAddModalVisible] = useState(false);
-  const [modifyModalVisible, setModifyModalVisible] = useState(false);
+  // const [modifyModalVisible, setModifyModalVisible] = useState(false);
   const { user } = useContext(AdminContext)
 
 
@@ -103,25 +105,26 @@ const News = () => {
   if (!news) {return <p>chargement</p>};
 console.log(news)
   return (
+        <>
     <Newnews>
       <div className="sidebar">
         <Sidebar />
       </div>
       <Content>
-        <div className="titlepage">
-          <h2>News</h2>
+        <TitleContainer className="titlepage">
+          <Title>News</Title>
           <Add onClick={() => setAddModalVisible(true)}>Ajouter</Add>
-        </div>
+        </TitleContainer>
 
-        {news.map((news) => {
-          const { title, content, createdAt, updatedAt, id } = news;
+        {news.map((news , index) => {
+          const { title, content, createdAt, updatedAt } = news;
           const created = moment(createdAt).locale("fr").format("llll");
           const updated = moment(updatedAt).locale("fr").format("llll");
 
           return (
-            <div key={id} className="news">
+            <div key={index} className="news">
               {/* <h2>News</h2> */}
-              <p>
+              <div className="p">
                 {title}!
                 <br />
                 <br />"{content}"
@@ -132,13 +135,15 @@ console.log(news)
                   <br />
                   Mise à jour:&ensp;"{updated}"
                 </div>
-              </p>
+              </div>
               {/* <CardSessions news={news.title} key={news._id}></CardSessions> */}
             </div>
           );
         })}
       </Content>
     </Newnews>
+    <AddModalNews onClose={()=> setAddModalVisible(false)} isOpen={addModalVisible} addNewNews={addNewNews} getNews={getNews} />
+    </>
   );
 };
 

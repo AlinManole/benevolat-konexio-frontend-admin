@@ -27,6 +27,15 @@ const ListNewsContextProvider = ({ children }) => {
       body: JSON.stringify(values)
     })
 
+    if (response.error) {
+      alert(response.error);
+      return;
+    }
+
+    if (response.status >= 400) {
+      alert(response.statusText);
+    }
+
     const data = await response.json();
 
     setNewNews(data)

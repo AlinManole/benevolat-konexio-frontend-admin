@@ -81,7 +81,7 @@ const Sessions = () => {
 
   useEffect(() => {
     getSessions();
-  }, [sessions]);
+  }, []);
 
   if (!user) {
     return (
