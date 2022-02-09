@@ -4,9 +4,7 @@ import { ListBenevolesContext } from "../context/ListBenevoles";
 import { Title, Content, Container } from '../components/styled-components/FormPage';
 import BenevoleCard from '../components/BenevoleCard';
 import styled from 'styled-components';
-import {
-    TitleContainer,
-  } from "../components/styled-components/AdminTitle";
+
 import { AdminContext } from '../context/Admin';
 
 
@@ -22,6 +20,18 @@ height: 80px;
 const ScrollDiv = styled.div`
  width: 100%;
  margin: 20px 0;
+ padding-bottom: 20px;
+ vertical-align: middle;
+`
+
+const NameContainer = styled.div`
+width: 100%;
+heigh: 60px;
+
+.pageText {
+
+    background-color: red;
+}
 `
 
 const Benevoles = () => {
@@ -30,29 +40,29 @@ const Benevoles = () => {
 
     useEffect(() => {
         getBenevoles();
-    });
+    },[]);
 
-    if (!user) {
-        return (
-          <Container>
-          <Sidebar />
-          <Content>
-            <TitleContainer>
-              <Title>Benevoles</Title>
-            </TitleContainer>
-            <p>Vous n'etes pas autorisé.e à acceder à la page. </p>
-          </Content>
-        </Container>
-        )
-      }
+    // if (!user) {
+    //     return (
+    //       <Container>
+    //       <Sidebar />
+    //       <Content>
+    //         <TitleContainer>
+    //           <Title>Benevoles</Title>
+    //         </TitleContainer>
+    //         <p>Vous n'etes pas autorisé.e à acceder à la page. </p>
+    //       </Content>
+    //     </Container>
+    //     )
+    //   }
 
 
     return (
         <Container>
             <Sidebar />
             <Content>
-                <Title>Liste de Bénévoles</Title>
-                <div className='big-container'>
+                <Title className='pageText'>Liste de Bénévoles</Title>
+                <NameContainer>
                     <NameDiv>
                         <h3>Nome</h3>
                         <h3>Prénom</h3>
@@ -63,13 +73,15 @@ const Benevoles = () => {
                         <h3>Nom de l`entreprise</h3>
                         <h3>Présentiel/
                             Distanciel</h3>
+               
                     </NameDiv>
                     <ScrollDiv>
                         {benevoles &&
                             benevoles.map(benevole => {
-                                const { firstName, lastName, telephone, email, courses, businessName, distanciel } = benevole
+                                const { firstName, lastName, telephone, email, courses, businessName, distanciel, _id } = benevole
                                 return (
                                     <BenevoleCard
+                                        id={_id}
                                         key={lastName}
                                         firstName={firstName}
                                         lastName={lastName}
@@ -83,7 +95,7 @@ const Benevoles = () => {
                             })
                         }
                     </ScrollDiv>
-                </div>
+                </NameContainer>
             </Content>
         </Container>
     );

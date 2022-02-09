@@ -2,7 +2,7 @@ import Modal from "react-modal";
 import { GrClose } from "react-icons/gr";
 import styled from "styled-components";
 import { Field, Formik, Form } from "formik";
-import { useContext, useEffect } from "react";
+import { useContext } from "react";
 import { ListSessionsContext } from "../context/ListSessions";
 import moment from "moment";
 

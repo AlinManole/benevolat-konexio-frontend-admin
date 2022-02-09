@@ -33,10 +33,15 @@ h3 {
 
 .benevoleCard {
   width: 170px;
+  margin-top: 18px;
 }
 
 p {
   font-size: 16px;
+}
+
+.pageText {
+  padding: 30px;
 }
 
 
