@@ -23,7 +23,7 @@ const App = () => {
           <ListNewsContextProvider>
             <AdminContextProvider>
               <Routes>
-                <Route exact path="/login/admin" element={<Login />} />
+                <Route exact path="/login" element={<Login />} />
                 <Route exact path="/benevoles" element={<Benevoles />} />
                 <Route exact path="/sessions/:id_session" element={<Calendrier />} />
                 <Route exact path="/news" element={<News />} />

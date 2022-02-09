@@ -77,6 +77,26 @@ const ListSessionsContextProvider = ({children}) => {
     }
   }
 
+  const bookDay = async (date, id_user, id_session) => {
+    const response = await fetch(
+      `http://localhost:5000/courses/${id_session}/${id_user}`,
+      {
+        credentials: "include",
+        method: "put",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          date,
+        }),
+      }
+    );
+
+    const data = await response.json();
+
+    setSession(data);
+  };
+
   const value = {
     sessions,
     getSessions,
@@ -85,7 +105,8 @@ const ListSessionsContextProvider = ({children}) => {
     modifySession,
     getSession,
     deleteSession,
-    session
+    session,
+    bookDay
   }
 
   return (

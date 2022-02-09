@@ -57,7 +57,7 @@ const Sidebar = () => {
             <Link className="link nav" to='/messagerie'>
                 <H1>Messagerie</H1>
             </Link>
-            <Link className="link nav" to='/login/admin'>
+            <Link className="link nav" to='/login'>
                 <H1>Logout</H1>
             </Link>
         </Nav>

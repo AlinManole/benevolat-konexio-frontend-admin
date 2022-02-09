@@ -33,7 +33,7 @@ text-align: left;
 
 const BenevoleCard = (props) => {
     const [addModalVisible, setAddModalVisible] = useState(false);
-    const [modifyModalVisible, setModifyModalVisible] = useState(false);
+    // const [modifyModalVisible, setModifyModalVisible] = useState(false);
 
     const {
         benevoles,
