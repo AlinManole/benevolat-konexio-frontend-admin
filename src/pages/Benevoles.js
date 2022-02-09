@@ -4,6 +4,9 @@ import { ListBenevolesContext } from "../context/ListBenevoles";
 import { Title, Content, Container } from '../components/styled-components/FormPage';
 import BenevoleCard from '../components/BenevoleCard';
 import styled from 'styled-components';
+import {
+    TitleContainer,
+  } from "../components/styled-components/AdminTitle";
 
 import { AdminContext } from '../context/Admin';
 
