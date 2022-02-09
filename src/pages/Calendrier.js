@@ -4,8 +4,6 @@ import { useParams } from "react-router-dom";
 import moment from "moment";
 import "moment/locale/fr";
 import { datesGenerator } from "dates-generator";
-// import Calendar from 'react-calendar';
-// import "react-calendar/dist/Calendar.css";
 
 import {
   MdOutlineKeyboardArrowLeft,
@@ -62,6 +60,7 @@ const Box = styled.div`
   height: 100%;
   padding: 5px;
   border-radius: 10px;
+	/* overflow-y: scroll; */
 
   &:hover {
     background-color: #025e96;
@@ -261,7 +260,12 @@ const Calendar = () => {
                                 >
                                   <Box>
                                     <NumberDay>{each.date}</NumberDay>
-                                    {session.days.find((day) => moment(day.date).format("YYYY-MM-DD") === moment(`${each.year}-${each.month + 1}-${each.date}`).format("YYYY-MM-DD") && day.users.map(userDay => <p>{userDay.lastName} {userDay.firstName}</p>))}
+																		{/* { session.days.filter( day => {
+																			console.log(day)
+																			return (
+																			moment(day.date).format("YYYY-MM-DD") === moment(`${each.year}-${each.month + 1}-${each.date}`).format("YYYY-MM-DD")
+																		)})} */}
+                                    {/* {session.days.find((day) => moment(day.date).format("YYYY-MM-DD") === moment(`${each.year}-${each.month + 1}-${each.date}`).format("YYYY-MM-DD")))} */}
                                   </Box>
                                 </td>
                               );
