@@ -77,7 +77,7 @@ const Sessions = () => {
   } = useContext(ListSessionsContext);
   const [addModalVisible, setAddModalVisible] = useState(false);
   const [modifyModalVisible, setModifyModalVisible] = useState(false);
-  const {user} = useContext(AdminContext)
+  const { user } = useContext(AdminContext)
 
   useEffect(() => {
     getSessions();

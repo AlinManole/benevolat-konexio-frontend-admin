@@ -18,7 +18,7 @@ const ListSessionsContextProvider = ({children}) => {
     setSessions(data)
   }
 
-  const addNewSession = async (values) => {
+  const addNewSession = async values => {
     const response = await fetch(`http://localhost:5000/courses`, {
       credentials: 'include',
       method: 'post',
@@ -48,7 +48,7 @@ const ListSessionsContextProvider = ({children}) => {
     setModifiedSession(data)
   }
 
-  const getSession = async (id) => {
+  const getSession = async id => {
     const response = await fetch(`http://localhost:5000/courses/${id}`, {
       credentials: 'include'
     })
@@ -58,7 +58,7 @@ const ListSessionsContextProvider = ({children}) => {
     setSession(data)
   } 
 
-  const deleteSession = async (id) => {
+  const deleteSession = async id => {
     const response = await fetch(`http://localhost:5000/courses/${id}`, {
       credentials: "include",
       method: "delete",

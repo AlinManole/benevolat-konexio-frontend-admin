@@ -1,4 +1,4 @@
-import React, { useContext, useEffect , useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import Sidebar from "../components/Sidebar";
 import styled from "styled-components";
 import { ListNewsContext } from "../context/ListNews";
@@ -18,8 +18,9 @@ import {
   CardIcons,
   ButtonIcon,
 } from "../components/styled-components/AdminTitle";
+import { RiDeleteBin5Fill } from "react-icons/ri";
 
-import  AddModalNews from '../modals/AddModalNews'
+import AddModalNews from '../modals/AddModalNews'
 
 const Newnews = styled.div`
   display: flex;
@@ -73,7 +74,7 @@ const Newnews = styled.div`
 // `;
 
 const News = () => {
-  
+
   const {
     news,
     getNews,
@@ -104,50 +105,61 @@ const News = () => {
   //   )
   // }
 
-  if (!news) {return <p>chargement</p>};
+  if (!news) { return <p>chargement</p> };
   console.log(news)
 
   return (
-        <>
-    <Newnews>
-      <div className="sidebar">
-        <Sidebar />
-      </div>
-      <Content>
-        <TitleContainer className="titlepage">
-          <Title>News</Title>
-          <Add onClick={() => setAddModalVisible(true)}>Ajouter</Add>
-        </TitleContainer>
+    <>
 
-        {news.map((news , index) => {
-          const { title, content, createdAt, updatedAt } = news;
-          const created = moment(createdAt).locale("fr").format("llll");
-          const updated = moment(updatedAt).locale("fr").format("llll");
+      <Newnews>
+        <div className="sidebar">
+          <Sidebar />
+        </div>
+        <Content>
+          <TitleContainer className="titlepage">
+            <Title>News</Title>
+            <Add onClick={() => setAddModalVisible(true)}>Ajouter</Add>
+          </TitleContainer>
 
-          return (
-            <div key={index} className="news">
-              <div className="p">
-                {title}!
-                <br />
-                <br />"{content}"
-                <br />
-                <br />
-                <div className="date">
-                  Création:&ensp;"{created}"
+          {news.map((news, index) => {
+            const { title, content, createdAt, updatedAt } = news;
+            const created = moment(createdAt).locale("fr").format("llll");
+            const updated = moment(updatedAt).locale("fr").format("llll");
+
+            console.log(news)
+
+            return (
+              <div key={index} className="news">
+                <div className="p">
+                  {title}!
                   <br />
-                  Mise à jour:&ensp;"{updated}"
+                  <br />"{content}"
+                  <br />
+                  <br />
+                  <div className="date">
+                    Création:&ensp;"{created}"
+                    <br />
+                    Mise à jour:&ensp;"{updated}"
+                  </div>
+                  <RiDeleteBin5Fill
+                    style={{ fontSize: '30px' }}
+                    onClick={() => {
+                    deleteNews(news._id);
+                    getNews();
+                  }}
+                >YYGZYZS</RiDeleteBin5Fill>
                 </div>
               </div>
-            </div>
-          );
-        })}
-      </Content> 
-    </Newnews>
-    <AddModalNews 
-      onClose={()=> setAddModalVisible(false)} 
-      isOpen={addModalVisible} 
-      addNewNews={addNewNews} 
-      getNews={getNews} />
+            );
+          })}
+        </Content>
+      </Newnews>
+  
+      <AddModalNews
+        onClose={() => setAddModalVisible(false)}
+        isOpen={addModalVisible}
+        addNewNews={addNewNews}
+        getNews={getNews} />
     </>
   );
 };
