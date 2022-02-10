@@ -1,6 +1,8 @@
-import React from 'react';
+import React from "react";
 import styled from "styled-components";
 import { useNavigate } from "react-router-dom"
+import moment from "moment";
+import "moment/locale/fr";
 
 
 const Row = styled.div`
@@ -52,45 +54,38 @@ const Row = styled.div`
     font-weight: 400;
     color: grey
 }
-
-h3 {
-    color: black;
-}
-
- h4 {
-    color: black;
-}
 `
 
-const EmailRow = ({id, title, subject, description, time,}) => {
+const EmailRow = ({ from, object, date, messageId }) => {
     const navigate = useNavigate(); 
-    
-    return (
-        <Row>
-        <div onClick={() => navigate('/mail')} className="emailRow">
-            <div className="emailRowOptions">
-            <input type="checkbox"/>
-            </div>
 
+    return (
+        
+        <Row>
+        <div onClick={() => navigate(`/messagerie/${messageId}`)} className="emailRow">
             <h3 className="emailRowTitle">
-                {title}
+                {from.lastName} {from.firstName}
             </h3>
 
             <div className="emailRowMessage">
-                <h4>{subject}{" "}
-
-            <span className="emailRowDescription">-{' '}
-                {description}
-            </span>
-            </h4>
+                <h4>
+                    {/* {subject}{" "}  */}
+                    <span className="emailRowDescription">-{' '}
+                    {object}
+                </span>
+                </h4>
             </div>
 
             <p className="emailRowTime">
-                {time}
+                {moment(date).locale('fr').format("DD/MM/YYYY - h:mm")}
             </p>
         </div>
         </Row>
     );
-};
+        
+ }
+        // )}
+        // }}
+
 
 export default EmailRow;

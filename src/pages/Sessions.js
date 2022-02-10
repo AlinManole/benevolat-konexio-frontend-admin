@@ -117,7 +117,7 @@ const Sessions = () => {
                 <>
                   <CardSessions session={program.name} key={session._id}>
                     <CardHeader>
-                      <Link to="/" className="link link-card">
+                      <Link to={`/sessions/${session._id}`} className="link link-card">
                         <CardTitle>
                           {start} - {end}
                         </CardTitle>

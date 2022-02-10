@@ -60,7 +60,7 @@ const Box = styled.div`
   height: 100%;
   padding: 5px;
   border-radius: 10px;
-	/* overflow-y: scroll; */
+  /* overflow-y: scroll; */
 
   &:hover {
     background-color: #025e96;
@@ -82,10 +82,9 @@ const NumberDay = styled.div`
 const Calendar = () => {
   const { id_session } = useParams();
   const { user } = useContext(AdminContext);
-  const { getSession, session } = useContext(ListSessionsContext)
+  const { getSession, session } = useContext(ListSessionsContext);
   const [dates, setDates] = useState([]);
-  const [calendar, setCalendar] = useState({
-  });
+  const [calendar, setCalendar] = useState({});
 
   useEffect(() => {
     getSession(id_session);
@@ -149,7 +148,7 @@ const Calendar = () => {
       previousMonth,
       previousYear,
     });
-  }
+  };
 
   if (!user) {
     return (
@@ -208,7 +207,7 @@ const Calendar = () => {
                   display: "flex",
                   flexDirection: "row",
                   justifyContent: "space-between",
-                  marginBottom: 20
+                  marginBottom: 20,
                 }}
               >
                 <div onClick={onClickPrevious} style={{ float: "left" }}>
@@ -248,6 +247,16 @@ const Calendar = () => {
                         dates.map((week) => (
                           <tr key={JSON.stringify(week[0])}>
                             {week.map((each) => {
+                              const filteredSessionDays = session.days.filter(
+                                (day) =>
+                                  moment(day.date).format("YYYY-MM-DD") ===
+                                  moment(
+                                    `${each.year}-${each.month + 1}-${
+                                      each.date
+                                    }`
+                                  ).format("YYYY-MM-DD")
+                              );
+
                               return (
                                 <td
                                   key={JSON.stringify(each)}
@@ -260,12 +269,17 @@ const Calendar = () => {
                                 >
                                   <Box>
                                     <NumberDay>{each.date}</NumberDay>
-																		{/* { session.days.filter( day => {
+                                    {/* { session.days.filter( day => {
 																			console.log(day)
 																			return (
 																			moment(day.date).format("YYYY-MM-DD") === moment(`${each.year}-${each.month + 1}-${each.date}`).format("YYYY-MM-DD")
 																		)})} */}
                                     {/* {session.days.find((day) => moment(day.date).format("YYYY-MM-DD") === moment(`${each.year}-${each.month + 1}-${each.date}`).format("YYYY-MM-DD")))} */}
+                                    {filteredSessionDays.map((sessionDay) => (
+                                      sessionDay.users.map(userDay => (
+                                        <p>{userDay.lastName} {userDay.firstName}</p>
+                                      ))
+                                    ))}
                                   </Box>
                                 </td>
                               );
@@ -277,8 +291,8 @@ const Calendar = () => {
                 </div>
               </div>
             </ContainerCalendar>
-            </div>
-            <div style={{ height: 40 }}></div>
+          </div>
+          <div style={{ height: 40 }}></div>
         </Content>
       </Container>
     </>

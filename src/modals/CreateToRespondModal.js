@@ -1,7 +1,7 @@
 import Modal from 'react-modal';
-import CreateWriteForm from './CreateWriteForm';
 import { GrClose } from 'react-icons/gr';
 import styled from 'styled-components';
+import CreateToRespondForm from './CreateToRespondForm';
 
 const modalStyle = {
   content: {
@@ -53,9 +53,7 @@ border: 3px solid rgb(212, 210, 210);
 }
 `
 
-Modal.setAppElement('#root')
-
-const CreateWriteModal = ({ isOpen, onClose }) => {
+const CreateToRespondModal = ({ isOpen, onClose }) => {
   return (
     <Modal
       isOpen={isOpen}
@@ -66,7 +64,7 @@ const CreateWriteModal = ({ isOpen, onClose }) => {
         {/* <button className>Envoyer</button> */}
         </Logos>
      
-      <CreateWriteForm
+      <CreateToRespondForm
         onClose={onClose}
       />
     </Modal>
@@ -74,4 +72,4 @@ const CreateWriteModal = ({ isOpen, onClose }) => {
   )
 }
 
-export default CreateWriteModal;
+export default CreateToRespondModal;
