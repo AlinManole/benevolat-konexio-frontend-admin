@@ -1,7 +1,7 @@
-import Modal from "react-modal";
-import { GrClose } from "react-icons/gr";
-import styled from "styled-components";
-import { Field, Formik, Form } from "formik";
+import Modal from "react-modal"
+import { GrClose } from "react-icons/gr"
+import styled from "styled-components"
+import { Field, Formik, Form } from "formik"
 
 const customStyles = {
   content: {
@@ -13,23 +13,23 @@ const customStyles = {
     transform: "translate(-50%, -50%)",
     position: "absolute",
   },
-};
+}
 
 const Header = styled.div`
   display: flex;
   flex-direction: row;
   align-items: center;
   height: 90px;
-`;
+`
 const Body = styled.div`
   color: rgba(153, 153, 153, 1);
-`;
+`
 const InputLine = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
   margin: 15px 20px;
-`;
+`
 const Input = styled.input`
   padding: 10px;
   border-radius: 9999px;
@@ -37,7 +37,7 @@ const Input = styled.input`
   background-color: #f4f4f4;
   font-size: 18px;
   width: 48%;
-`;
+`
 const Button = styled.button`
   padding: 10px;
   border-radius: 9999px;
@@ -49,9 +49,9 @@ const Button = styled.button`
   width: 30%;
   margin: 20px 10px 10px 10px;
   cursor: pointer;
-`;
+`
 
-Modal.setAppElement("#root");
+Modal.setAppElement("#root")
 
 const AddModalSession = ({ isOpen, onClose, addNewSession, getSessions }) => {
   return (
@@ -70,8 +70,8 @@ const AddModalSession = ({ isOpen, onClose, addNewSession, getSessions }) => {
             program: "",
           }}
           onSubmit={(values) => {
-            addNewSession(values);
-            onClose();
+            addNewSession(values)
+            onClose()
             getSessions()
           }}
         >
@@ -145,7 +145,7 @@ const AddModalSession = ({ isOpen, onClose, addNewSession, getSessions }) => {
         </Formik>
       </Body>
     </Modal>
-  );
-};
+  )
+}
 
-export default AddModalSession;
+export default AddModalSession
