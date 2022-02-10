@@ -1,4 +1,4 @@
-import React, { useContext, useEffect , useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import Sidebar from "../components/Sidebar";
 import styled from "styled-components";
 import { ListNewsContext } from "../context/ListNews";
@@ -18,8 +18,9 @@ import {
   CardIcons,
   ButtonIcon,
 } from "../components/styled-components/AdminTitle";
+import { RiDeleteBin5Fill } from "react-icons/ri";
 
-import  AddModalNews from '../modals/AddModalNews'
+import AddModalNews from '../modals/AddModalNews'
 
 const Newnews = styled.div`
   display: flex;
@@ -73,12 +74,14 @@ const Newnews = styled.div`
 // `;
 
 const News = () => {
+
   const {
     news,
     getNews,
     addNewNews,
     deleteNews,
-  } = useContext(ListNewsContext);
+  } = useContext(ListNewsContext)
+
   const [addModalVisible, setAddModalVisible] = useState(false);
   // const [modifyModalVisible, setModifyModalVisible] = useState(false);
   const { user } = useContext(AdminContext)
@@ -88,61 +91,76 @@ const News = () => {
     getNews();
   }, []);
 
-  // if (!user) {
-  //   return (
-  //     <Container>
-  //     <Sidebar />
-  //     <Content>
-  //       <TitleContainer>
-  //         <Title>News</Title>
-  //       </TitleContainer>
-  //       <p>Vous n'etes pas autorisé.e à acceder à la page. </p>
-  //     </Content>
-  //   </Container>
-  //   )
-  // }
-
-  if (!news) {return <p>chargement</p>};
-console.log(news)
-  return (
-        <>
-    <Newnews>
-      <div className="sidebar">
-        <Sidebar />
-      </div>
+  if (!user) {
+    return (
+      <Container>
+      <Sidebar />
       <Content>
-        <TitleContainer className="titlepage">
+        <TitleContainer>
           <Title>News</Title>
-          <Add onClick={() => setAddModalVisible(true)}>Ajouter</Add>
         </TitleContainer>
+        <p>Vous n'etes pas autorisé.e à acceder à la page. </p>
+      </Content>
+    </Container>
+    )
+  }
 
-        {news.map((news , index) => {
-          const { title, content, createdAt, updatedAt } = news;
-          const created = moment(createdAt).locale("fr").format("llll");
-          const updated = moment(updatedAt).locale("fr").format("llll");
+  if (!news) { return <p>chargement</p> };
+  console.log(news)
 
-          return (
-            <div key={index} className="news">
-              {/* <h2>News</h2> */}
-              <div className="p">
-                {title}!
-                <br />
-                <br />"{content}"
-                <br />
-                <br />
-                <div className="date">
-                  Création:&ensp;"{created}"
+  return (
+    <>
+
+      <Newnews>
+        <div className="sidebar">
+          <Sidebar />
+        </div>
+        <Content>
+          <TitleContainer className="titlepage">
+            <Title>News</Title>
+            <Add onClick={() => setAddModalVisible(true)}>Ajouter</Add>
+          </TitleContainer>
+
+          {news.map((news, index) => {
+            const { title, content, createdAt, updatedAt } = news;
+            const created = moment(createdAt).locale("fr").format("llll");
+            const updated = moment(updatedAt).locale("fr").format("llll");
+
+            console.log(news)
+
+            return (
+              <div key={index} className="news">
+                <div className="p">
+                  {title}!
                   <br />
-                  Mise à jour:&ensp;"{updated}"
+                  <br />"{content}"
+                  <br />
+                  <br />
+                  <div className="date">
+                    Création:&ensp;"{created}"
+                    <br />
+                    Mise à jour:&ensp;"{updated}"
+                  </div>
+                  <RiDeleteBin5Fill
+                    style={{ fontSize: '30px' }}
+                    onClick={() => {
+                    getNews();
+                    deleteNews(news._id);
+                    getNews();
+                  }}
+                />
                 </div>
               </div>
-              {/* <CardSessions news={news.title} key={news._id}></CardSessions> */}
-            </div>
-          );
-        })}
-      </Content>
-    </Newnews>
-    <AddModalNews onClose={()=> setAddModalVisible(false)} isOpen={addModalVisible} addNewNews={addNewNews} getNews={getNews} />
+            );
+          })}
+        </Content>
+      </Newnews>
+  
+      <AddModalNews
+        onClose={() => setAddModalVisible(false)}
+        isOpen={addModalVisible}
+        addNewNews={addNewNews}
+        getNews={getNews} />
     </>
   );
 };
