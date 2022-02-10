@@ -17,7 +17,7 @@ const ListNewsContextProvider = ({ children }) => {
   }
 
 
-  const addNewNews = async (values) => {
+  const addNewNews = async values => {
     const response = await fetch(`http://localhost:5000/news`, {
       credentials: 'include',
       method: 'post',
@@ -39,9 +39,13 @@ const ListNewsContextProvider = ({ children }) => {
     const data = await response.json();
 
     setNewNews(data)
+    console.log('data', data)
+    console.log("new blog added")
   }
 
-  const deleteNews = async (id) => {
+
+
+  const deleteNews = async id => {
     const response = await fetch(`http://localhost:5000/news/${id}`, {
       credentials: "include",
       method: "delete",
@@ -62,6 +66,9 @@ const ListNewsContextProvider = ({ children }) => {
 
   const value = {
     news,
+    newNews,
+    setNews,
+    setNewNews,
     getNews,
     deleteNews,
     addNewNews

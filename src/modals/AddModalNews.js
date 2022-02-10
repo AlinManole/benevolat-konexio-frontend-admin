@@ -3,6 +3,9 @@ import { GrClose } from "react-icons/gr";
 import styled from "styled-components";
 import { useFormik } from "formik";
 import * as Yup from "yup"
+import InputComponentLargeWd from '../components/InputComponentLargeWd'
+import TextAreaComponent from '../components/TextAreaComponent'
+import { Add } from '../components/styled-components/AdminTitle'
 
 const customStyles = {
   content: {
@@ -26,10 +29,10 @@ const Body = styled.div`
   color: rgba(153, 153, 153, 1);
 `;
 
-const Form = styled.div`
-display:flex;
+const Form = styled.form`
+  display:flex;
+  flex-direction: column;
 `
-// Modal.setAppElement("#root");
 const AddModalNews = ({ isOpen, onClose, addNewNews, getNews }) => {
   const formik = useFormik({
     initialValues:{
@@ -56,14 +59,13 @@ const AddModalNews = ({ isOpen, onClose, addNewNews, getNews }) => {
       </Header>
       <Body>
           <Form onSubmit={formik.handleSubmit}>
-            <input type="text" name="title" onChange={formik.handleChange} value={formik.values.title} placeholder="Titre"/>
-            <textarea type="text" as="textarea" name="content" onChange={formik.handleChange} value={formik.values.content} placeholder="Ecrire votre contenu.."/>
-
-            <button type="submit">Publier</button>
+            <InputComponentLargeWd type="text" name="title" onChange={formik.handleChange} value={formik.values.title} placeholder="Titre"/>
+            <TextAreaComponent type="text" as="textarea" name="content" onChange={formik.handleChange} value={formik.values.content} placeholder="Ecrire votre contenu.."/>
+            <Add type="submit">Publier</Add>
           </Form>
       </Body>
     </Modal>
   );
 };
 
-export default AddModalNews;
+export default AddModalNews

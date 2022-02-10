@@ -73,12 +73,14 @@ const Newnews = styled.div`
 // `;
 
 const News = () => {
+  
   const {
     news,
     getNews,
     addNewNews,
     deleteNews,
-  } = useContext(ListNewsContext);
+  } = useContext(ListNewsContext)
+
   const [addModalVisible, setAddModalVisible] = useState(false);
   // const [modifyModalVisible, setModifyModalVisible] = useState(false);
   const { user } = useContext(AdminContext)
@@ -103,7 +105,8 @@ const News = () => {
   // }
 
   if (!news) {return <p>chargement</p>};
-console.log(news)
+  console.log(news)
+
   return (
         <>
     <Newnews>
