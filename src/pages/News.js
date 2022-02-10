@@ -123,7 +123,6 @@ console.log(news)
 
           return (
             <div key={index} className="news">
-              {/* <h2>News</h2> */}
               <div className="p">
                 {title}!
                 <br />
@@ -136,13 +135,16 @@ console.log(news)
                   Mise à jour:&ensp;"{updated}"
                 </div>
               </div>
-              {/* <CardSessions news={news.title} key={news._id}></CardSessions> */}
             </div>
           );
         })}
-      </Content>
+      </Content> 
     </Newnews>
-    <AddModalNews onClose={()=> setAddModalVisible(false)} isOpen={addModalVisible} addNewNews={addNewNews} getNews={getNews} />
+    <AddModalNews 
+      onClose={()=> setAddModalVisible(false)} 
+      isOpen={addModalVisible} 
+      addNewNews={addNewNews} 
+      getNews={getNews} />
     </>
   );
 };

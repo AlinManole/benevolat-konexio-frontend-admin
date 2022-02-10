@@ -1,7 +1,7 @@
 import Modal from "react-modal";
 import { GrClose } from "react-icons/gr";
 import styled from "styled-components";
-import { useFormik} from "formik";
+import { useFormik } from "formik";
 import * as Yup from "yup"
 
 const customStyles = {
@@ -29,12 +29,8 @@ const Body = styled.div`
 const Form = styled.div`
 display:flex;
 `
-
-Modal.setAppElement("#root");
-
+// Modal.setAppElement("#root");
 const AddModalNews = ({ isOpen, onClose, addNewNews, getNews }) => {
-
-
   const formik = useFormik({
     initialValues:{
       title:"",
@@ -44,16 +40,13 @@ const AddModalNews = ({ isOpen, onClose, addNewNews, getNews }) => {
       addNewNews(values)
       onClose()
       getNews()
-      console.log(values)
     },
     validateOnChange: false, 
     validationSchema: Yup.object({
-      title:Yup.string(),
+      title:Yup.string().required("Un titre est obligatoire"),
       content: Yup.string().required("Contenu est obligatoire")
     })
   })
-
-  console.log(formik)
 
   return (
     <Modal isOpen={isOpen} style={customStyles} className="modal">
@@ -64,7 +57,7 @@ const AddModalNews = ({ isOpen, onClose, addNewNews, getNews }) => {
       <Body>
           <Form onSubmit={formik.handleSubmit}>
             <input type="text" name="title" onChange={formik.handleChange} value={formik.values.title} placeholder="Titre"/>
-            <input type="text" name="content" onChange={formik.handleChange} value={formik.values.content} placeholder="Ecrire votre contenu.."/>
+            <textarea type="text" as="textarea" name="content" onChange={formik.handleChange} value={formik.values.content} placeholder="Ecrire votre contenu.."/>
 
             <button type="submit">Publier</button>
           </Form>
