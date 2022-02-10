@@ -40,6 +40,7 @@ const AddModalNews = ({ isOpen, onClose, addNewNews, getNews }) => {
       content:""
     },
     onSubmit: values => {
+      getNews()
       addNewNews(values)
       onClose()
       getNews()

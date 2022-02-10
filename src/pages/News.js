@@ -91,19 +91,19 @@ const News = () => {
     getNews();
   }, []);
 
-  // if (!user) {
-  //   return (
-  //     <Container>
-  //     <Sidebar />
-  //     <Content>
-  //       <TitleContainer>
-  //         <Title>News</Title>
-  //       </TitleContainer>
-  //       <p>Vous n'etes pas autorisé.e à acceder à la page. </p>
-  //     </Content>
-  //   </Container>
-  //   )
-  // }
+  if (!user) {
+    return (
+      <Container>
+      <Sidebar />
+      <Content>
+        <TitleContainer>
+          <Title>News</Title>
+        </TitleContainer>
+        <p>Vous n'etes pas autorisé.e à acceder à la page. </p>
+      </Content>
+    </Container>
+    )
+  }
 
   if (!news) { return <p>chargement</p> };
   console.log(news)
@@ -144,10 +144,11 @@ const News = () => {
                   <RiDeleteBin5Fill
                     style={{ fontSize: '30px' }}
                     onClick={() => {
+                    getNews();
                     deleteNews(news._id);
                     getNews();
                   }}
-                >YYGZYZS</RiDeleteBin5Fill>
+                />
                 </div>
               </div>
             );
